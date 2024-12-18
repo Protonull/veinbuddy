@@ -1,41 +1,33 @@
 {
 	"schemaVersion": 1,
 	"id": "veinbuddy",
-	"version": "${version}",
-	"name": "VeinBuddy",
-	"description": "Marks areas you should dig!",
+	"version": "${mod_version}",
+	"name": "${mod_name}",
+	"description": "${mod_description}",
 	"authors": [
-		"sbobicus"
+		"sbobicus",
+		"Protonull"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "${mod_home_url}",
+		"sources": "${mod_source_url}",
+		"issues": "${mod_issues_url}"
 	},
-	"license": "CC0-1.0",
-	"icon": "assets/modid/icon.png",
-	"environment": "*",
+	"license": "${copyright_licence}",
+	"icon": "assets/veinbuddy/icon.png",
+	"environment": "client",
 	"entrypoints": {
-		"main": [
-			"com.veinbuddy.VeinBuddy"
-		],
 		"client": [
-			"com.veinbuddy.VeinBuddyClient"
+			"com.github.sbobicus.VeinBuddyClient"
 		]
 	},
-	"mixins": [
-		"veinbuddy.mixins.json",
-		{
-			"config": "veinbuddy.client.mixins.json",
-			"environment": "client"
-		}
-	],
 	"depends": {
-		"fabricloader": ">=0.15.11",
-		"minecraft": "~1.21",
 		"java": ">=21",
+		"minecraft": "${minecraft_version}",
+		"fabricloader": ">=${fabric_loader_version}",
 		"fabric-api": "*"
 	},
-	"suggests": {
-		"another-mod": "*"
-	}
+	"mixins": [
+		"veinbuddy.mixins.json"
+	]
 }

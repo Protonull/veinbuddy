@@ -1,4 +1,4 @@
-package com.veinbuddy;
+package com.github.sbobicus;
 
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;

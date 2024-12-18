@@ -1,4 +1,4 @@
-package com.veinbuddy.mixin.client;
+package com.github.sbobicus.mixins;
 
 import net.minecraft.client.particle.ItemPickupParticle;
 import net.minecraft.client.render.Camera;

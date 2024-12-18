@@ -1,9 +1,9 @@
 {
 	"required": true,
-	"package": "com.veinbuddy.mixin",
+	"package": "com.github.sbobicus.mixins",
 	"compatibilityLevel": "JAVA_21",
-	"mixins": [
-		"ExampleMixin"
+	"client": [
+		"ParticleMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
