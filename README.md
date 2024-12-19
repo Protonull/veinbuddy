@@ -1,9 +1,17 @@
-# Fabric Example Mod
+# VeinBuddy
 
-## Setup
+Helps you mine veins on HiddenOre servers!
 
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
+## Usage
 
-## License
+Right-click and drag while holding a pickaxe in hand to select blocks. VeinBuddy will highlight an area for you to mine
+out to find more ore.
 
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+## Commands
+
+- `/veinbuddy clearAll`
+- `/veinbuddy clearFar`
+- `/veinbuddy clearNear`
+- `/veinbuddy hideOutlines`
+- `/veinbuddy showOutlines`
+- `/veinbuddy reload`
