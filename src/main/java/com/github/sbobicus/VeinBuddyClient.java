@@ -95,7 +95,7 @@ public class VeinBuddyClient implements ClientModInitializer {
         if (null == serverInfo)
             return null;
         String address = serverInfo.address;
-        return new File(client.runDirectory, address + ".txt");
+        return new File(client.runDirectory, "data/veinbuddy/" + address + ".txt");
     }
 
     private void saveSelections(MinecraftClient client) {
@@ -104,6 +104,7 @@ public class VeinBuddyClient implements ClientModInitializer {
             File saveFile = getSaveFile(client);
             if (null == saveFile)
                 return;
+            saveFile.getParentFile().mkdirs();
             FileWriter fileWriter = new FileWriter(saveFile, false);
             for (Vec3i selection : selections) {
                 fileWriter.write(selection.getX() + " " + selection.getY() + " " + selection.getZ() + "\n");
