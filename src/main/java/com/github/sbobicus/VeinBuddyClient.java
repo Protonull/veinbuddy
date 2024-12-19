@@ -1,58 +1,46 @@
 package com.github.sbobicus;
 
-import org.lwjgl.glfw.GLFW;
-import org.lwjgl.opengl.GL11;
-
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.brigadier.builder.ArgumentBuilder;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
-import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.Math;
-import java.util.ArrayList;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Queue;
-import java.util.Set;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.Spliterator;
-
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.Mouse;
-import net.minecraft.client.render.*;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.client.network.ServerInfo;
-import net.minecraft.item.PickaxeItem;
-import net.minecraft.text.Text;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Position;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3i;
-
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentSkipListSet;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
-import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
-
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ServerInfo;
+import net.minecraft.client.render.BufferBuilder;
+import net.minecraft.client.render.BufferRenderer;
+import net.minecraft.client.render.Frustum;
+import net.minecraft.client.render.GameRenderer;
+import net.minecraft.client.render.Tessellator;
+import net.minecraft.client.render.VertexFormat;
+import net.minecraft.client.render.VertexFormats;
+import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.item.PickaxeItem;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.Vec3i;
 import org.joml.Matrix4f;
-import org.joml.Quaternionf;
 import org.joml.Vector3f;
+import org.lwjgl.opengl.GL11;
 
 public class VeinBuddyClient implements ClientModInitializer {
 
