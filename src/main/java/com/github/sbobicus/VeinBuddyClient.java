@@ -1,7 +1,6 @@
 package com.github.sbobicus;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import java.io.File;
 import java.io.FileWriter;
@@ -74,20 +73,15 @@ public class VeinBuddyClient implements ClientModInitializer {
         ClientTickEvents.END_CLIENT_TICK.register(client -> saveSelections(client));
         WorldRenderEvents.AFTER_TRANSLUCENT.register(context -> afterTranslucent(context));
         WorldRenderEvents.LAST.register(context -> wireframeOverlays(context));
-        LiteralArgumentBuilder<FabricClientCommandSource> clearAll = ClientCommandManager.literal("clearAll");
-        LiteralArgumentBuilder<FabricClientCommandSource> clearFar = ClientCommandManager.literal("clearFar");
-        LiteralArgumentBuilder<FabricClientCommandSource> clearNear = ClientCommandManager.literal("clearNear");
-        LiteralArgumentBuilder<FabricClientCommandSource> hideOutlines = ClientCommandManager.literal("hideOutlines");
-        LiteralArgumentBuilder<FabricClientCommandSource> showOutlines = ClientCommandManager.literal("showOutlines");
-        LiteralArgumentBuilder<FabricClientCommandSource> reload = ClientCommandManager.literal("reload");
-        ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
-            dispatcher.register(clearAll.executes(context -> onClearAll(context)));
-            dispatcher.register(clearFar.executes(context -> onClearFar(context)));
-            dispatcher.register(clearNear.executes(context -> onClearNear(context)));
-            dispatcher.register(hideOutlines.executes(context -> onHideOutlines(context)));
-            dispatcher.register(showOutlines.executes(context -> onShowOutlines(context)));
-            dispatcher.register(reload.executes(context -> onReload(context)));
-        });
+        ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> dispatcher.register(
+            ClientCommandManager.literal("veinbuddy")
+                .then(ClientCommandManager.literal("clearAll").executes(this::onClearAll))
+                .then(ClientCommandManager.literal("clearFar").executes(this::onClearFar))
+                .then(ClientCommandManager.literal("clearNear").executes(this::onClearNear))
+                .then(ClientCommandManager.literal("hideOutlines").executes(this::onHideOutlines))
+                .then(ClientCommandManager.literal("showOutlines").executes(this::onShowOutlines))
+                .then(ClientCommandManager.literal("reload").executes(this::onReload))
+        ));
     }
 
     private File getSaveFile(MinecraftClient client) {
