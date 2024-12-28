@@ -69,10 +69,10 @@ public class VeinBuddyClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> onStart(client));
-        ClientTickEvents.END_CLIENT_TICK.register(client -> onTick(client));
-        ClientTickEvents.END_CLIENT_TICK.register(client -> saveSelections(client));
-        WorldRenderEvents.AFTER_TRANSLUCENT.register(context -> afterTranslucent(context));
-        WorldRenderEvents.LAST.register(context -> wireframeOverlays(context));
+        ClientTickEvents.END_CLIENT_TICK.register(this::onTick);
+        ClientTickEvents.END_CLIENT_TICK.register(this::saveSelections);
+        WorldRenderEvents.AFTER_TRANSLUCENT.register(this::afterTranslucent);
+        WorldRenderEvents.LAST.register(this::wireframeOverlays);
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> dispatcher.register(
             ClientCommandManager.literal("veinbuddy")
                 .then(ClientCommandManager.literal("clearAll").executes(this::onClearAll))
